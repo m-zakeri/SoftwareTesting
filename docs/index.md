@@ -19,11 +19,12 @@ Software testing is an essential part of the software development lifecycle. It 
 
 By the end of this course, you will have a solid foundation in software testing principles and be equipped with the skills necessary to ensure the quality and reliability of software products. Join us as we delve into the fascinating world of software testing and take the first step towards becoming a proficient software tester.
 
-#### Instructor
+## Course team
+### Instructor
 
 [Morteza Zakeri](https://member.acm.org/~mzakeri-nasrabadi), Ph.D.
 
-#### Teaching assistants
+### Teaching assistants
 
 *  
 
