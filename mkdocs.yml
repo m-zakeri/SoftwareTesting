@@ -1,0 +1,134 @@
+site_name: Software Testing Course
+site_url: https://m-zakeri.github.io/SoftwareTesting
+repo_url: https://github.com/m-zakeri/SoftwareTesting
+site_description: Software testing course materials and codes
+site_author: Morteza Zakeri
+copyright: © 2024 Zakeri
+
+theme:
+  name: material
+  palette:
+    #   # Palette toggle for automatic mode
+    # - media: "(prefers-color-scheme)"
+    #   toggle:
+    #     icon: material/brightness-auto
+    #     name: Switch to automatic mode
+
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      primary: red
+      accent: red
+      scheme: default 
+      toggle:
+        icon: material/brightness-7
+        name: Switch to light mode
+
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      primary: red
+      accent: red
+      scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to dark mode
+
+  icon:
+    logo: material/library
+    repo: fontawesome/brands/github
+
+  features:
+    - navigation.instant
+    - navigation.instant.prefetch
+    - navigation.instant.progress
+    - navigation.instant.preview
+    - navigation.tracking
+
+    - navigation.tabs
+    # - navigation.tabs.sticky
+
+    # - navigation.sections
+    # - navigation.expand
+
+    - navigation.path
+    # - navigation.prune 
+
+    # - navigation.indexes
+
+    # - toc.follow
+    - toc.integrate   # good feature :)
+
+    - navigation.top  # Add "back to top" button
+
+  # setup the search -----------------------------------------
+    - search.suggest # search suggest completion
+    - search.highlight # search highlight
+    - search.share # deep linking
+
+  # setup header ---------------------------------------------
+    - header.autohide # autohide header
+    # - announce.dismiss
+
+  # setup footer ---------------------------------------------
+    - navigation.footer # footer navigation
+
+  font:
+    text: Roboto # You can use any font from Google Fonts
+    code: Roboto Mono 
+
+  extra:
+    social:
+      - icon: fontawesome/brands/linkedin
+        link: https://www.linkedin.com/in/mortazazakeri/
+
+plugins:
+  - tags 
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          setup_commands:
+            - import sys
+            - import os
+          selection:
+            members: True
+extra_css:
+  - stylex.css
+
+markdown_extensions:
+  - abbr
+  - admonition # support for admonitions ---> use this in markdown like this : !!! note "Note" or ??? warning "Warning"
+  - pymdownx.details # support for admonitions with collapse
+  - pymdownx.superfences
+
+nav:
+    - Home: index.md
+    - Announcements: announcements.md
+    - Lectures: lectures/index.md
+    - Assignments:
+        - Writing assignments: assignments/writing_assignments.md
+    - Projects:
+        - Index: projects/index.md
+    - Problems with Solutions:
+        - Index: problems/index.md
+    - Issue Tracker: 'https://github.com/m-zakeri/SoftwareTesting/issues'
+
+
+# for hiding the navigation and toc (used in top of .md file)
+# ---
+# hide:
+#   - navigation
+#   - toc
+# ---
+
+# # Page title
+# ...
+
+
+# for adding tags to the page (used in top of .md file)
+# ---
+# tags:
+#   - Software testing
+#   - Automated test
+#   - Fuzzing
+#   - Test coverage
+# ---
