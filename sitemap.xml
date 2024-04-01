@@ -21,6 +21,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://m-zakeri.github.io/SoftwareTesting/problems/</loc>
+         <lastmod>2024-04-01</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://m-zakeri.github.io/SoftwareTesting/projects/</loc>
          <lastmod>2024-04-01</lastmod>
          <changefreq>daily</changefreq>
