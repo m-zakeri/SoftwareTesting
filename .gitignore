@@ -159,4 +159,11 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 .idea/
 
+
+
+# PyCharm
+
+
+# Course local dir
 references/slides/2016_Introduction_to_Software_Testing_Slides_temp/*
+wiki.*
