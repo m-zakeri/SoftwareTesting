@@ -1,0 +1,490 @@
+%%
+% قالب استاندارد گزارش‌های درسی و گزارش های پروژه برای دانشگاه علم و صنعت ایران
+% تهیه و تدوین: مرتضی ذاکری نصرآبادی
+% Morteza ZAKERI NASRABADI
+% m-zakeri@live.com
+
+% 
+%% نسخه 1.1 (13981125)
+% - تغییرات در نسخه 1.1
+% -- قابل حمل شدن بخش فونت (بخش فونت بایتسی توسط استفاده کننده درج شود)
+% -- سازگاری با TexLive 2018
+%
+%% نسخه 1.0 (13961025)
+%
+%
+%%
+\documentclass[a4paper,12pt]{article}
+% در ورژن جدید زی‌پرشین برای تایپ متن‌های ریاضی، این سه بسته، حتماً باید فراخوانی شود
+
+\RequirePackage{amsthm, amsmath, amssymb, amsfonts}
+% بسته‌ای برای تنطیم حاشیه‌های بالا، پایین، چپ و راست صفحه
+\usepackage[top=30mm, bottom=30mm, left=25mm, right=30mm]{geometry}
+%\usepackage[nottoc,numbib]{tocbibind}
+\usepackage[nottoc]{tocbibind}
+\usepackage{enumerate}
+%\usepackage{bm}
+% بسته‌‌ای برای ظاهر شدن شکل‌ها و تعیین آدرس تصاویر
+\usepackage[final]{graphicx}
+\graphicspath{{./figs/}}
+\usepackage{caption}
+%\usepackage{subcaption}
+%\usepackage{subfig}
+
+\usepackage{float}
+\usepackage{xparse}
+\usepackage{listing}
+\usepackage[final]{listings}
+\lstset{inputpath=./codes/}
+
+%\usepackage{color}
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage{soulutf8}
+
+
+\usepackage[xindy, acronym, nonumberlist=true]{glossaries}
+
+% بسته‌ لازم برای تنظیم سربرگ‌ها
+\usepackage{fancyhdr}
+\usepackage{setspace}
+% بسته‌های لازم برای نوشتن الگوریتم
+\usepackage{algorithm}
+\usepackage{algorithmic}
+% Add by Morteza %
+%\usepackage[linesnumbered,ruled,vlined]{algorithm2e}
+% بسته‌های لازم برای رسم بهتر جداول
+\usepackage{tabulary}
+\usepackage{tabularx}
+%% Add by Morteza
+\usepackage{multirow}
+\usepackage{fourier} 
+\usepackage{array}
+\usepackage{makecell}  % I use this %
+\usepackage{booktabs}
+
+%%
+% بسته‌های لازم برای رسم تنظیم بهتر شکل‌ها و زیرشکل‌ها
+\usepackage[export]{adjustbox}
+%\usepackage{subfigure}
+
+%\usepackage[subfigure]{tocloft}
+\usepackage{tocloft}
+%\usepackage{subfig}
+%\usepackage{caption}
+%\usepackage{subcaption}
+
+% بسته‌ای برای رسم کادر
+\usepackage{framed} 
+% بسته‌‌ای برای چاپ شدن خودکار تعداد صفحات در صفحه «معرفی پایان‌نامه»
+\usepackage{lastpage}
+\usepackage{cite}	% Add by Morteza %
+
+\usepackage[unicode=true, pagebackref=false, colorlinks, linkcolor=Blue, citecolor=Purple, urlcolor=Red, bookmarks=true, linktocpage, breaklinks]{hyperref}
+
+% بسته‌ٔ لازم برای: ۱. تغییر شماره‌گذاری صفحات پیوست. ۲. تصحیح باگ آدرس وب حاوی '%' در مراجع
+\usepackage{etoolbox}
+\usepackage{comment}
+
+\usepackage{blindtext}
+\usepackage{tcolorbox}
+
+\newtcolorbox{mybox}{boxrule=2pt,width=\textwidth,arc=2mm,colback=gray!1}
+\newtcolorbox{mybox2}[2][]{width=\textwidth,colback={green},colbacktitle=yellow,coltitle=blue, title=#2,#1}
+
+
+ %%%%%%%%%%%%%%%%%%%%%%%%%%
+% فراخوانی بسته زی‌پرشین و تعریف قلم فارسی و انگلیسی
+% قلم فارسی بازنویسی و قابل حمل شده است. امکان استفاده از چندین فونت فارسی مختلف در این قسمت فراهم شده است. برای استفاده نیازی به نصب بودن فونت ها روی رایانه خود ندارید.
+
+%\usepackage[extrafootnotefeatures]{xepersian}
+\usepackage{xepersian}
+
+\settextfont[Path={./font/Niloofar/}, BoldFont={XBNiloofarBd.ttf}, ItalicFont={XBNiloofarIt.ttf}, BoldItalicFont={XBNiloofarBdIt.ttf}, Scale=1.05]{XBNiloofar.ttf}
+
+\setlatintextfont[Scale=0.90]{Times New Roman}
+
+
+
+%-----------------
+%% https://github.com/persiantex/xepersian/issues/17
+% this is a temporary fix as stated in https://github.com/persiantex/xepersian/issues/17#issuecomment-709956867
+\ExplSyntaxOn
+\cs_set_eq:NN
+\etex_iffontchar:D
+\tex_iffontchar:D
+\cs_undefine:N \c_one
+\int_const:Nn \c_one { 1 } 
+\ExplSyntaxOff
+%-----------------
+% چنانچه می‌خواهید اعداد در فرمول‌ها، انگلیسی باشد، خط زیر را غیرفعال کنید
+%\setdigitfont[Path={./font/Zar/}, BoldFont={XBZarBd.ttf}, ItalicFont={XBZarIt.ttf}, BoldItalicFont={XBZarBdIt.ttf}, Scale=1.0]{XBZar.ttf}
+\setmathdigitfont[Path={./font/Zar/}, BoldFont={XBZarBd.ttf}, ItalicFont={XBZarIt.ttf}, BoldItalicFont={XBZarBdIt.ttf}, Scale=1.0]{XBZar.ttf}
+
+% اگر می‌خواهید که اعداد با فونت یکان نمایش داده شوند خط بالا را غیر فعال کرده و خط زیر را فعال کنید.
+
+%\setdigitfont[Path={./font/Yekan/}, BoldFont={XMYekanBd.ttf}, ItalicFont={XMYekanIt.ttf}, BoldItalicFont={XMYekanBdIt.ttf}, Scale=1.0]{XMYekan.ttf}%{Persian Modern}
+
+% تعریف قلم‌های فارسی و انگلیسی برای استفاده در بعضی از قسمت‌های متن
+\defpersianfont\niloofar[Path={./font/Niloofar/}, BoldFont={XBNiloofarBd.ttf}, ItalicFont={XBNiloofarIt.ttf}, BoldItalicFont={XBNiloofarBdIt.ttf}, Scale=1.0]{XBNiloofar.ttf}
+
+\defpersianfont\zar[Path={./font/Zar/}, BoldFont={XBZarBd.ttf}, ItalicFont={XBZarIt.ttf}, BoldItalicFont={XBZarBdIt.ttf}, Scale=1.0]{XBZar.ttf}
+
+\defpersianfont\yagut[Path={./font/Yagut/}, BoldFont={XBYagutBd.ttf}, ItalicFont={XBYagutIt.ttf}, BoldItalicFont={XBYagutBdIt.ttf}, Scale=1.0]{XBYagut.ttf}
+
+\defpersianfont\titlefont[Path={./font/Titre/}, BoldFont={XBTitreShadow.ttf}, ItalicFont={XBTitreIt.ttf}, BoldItalicFont={XBTitreShadowIt.ttf}, Scale=1.0]{XBTitre.ttf}
+
+\defpersianfont\iranic[Path={./font/Zar/XBZarOblique/}, BoldFont={XBZarObliqueBd.ttf}, Scale=1.10]{XBZarOblique.ttf}%Italic}%
+
+\defpersianfont\nastaliq[Path={./font/IranNastaliq/}, Scale=1.50]{IranNastaliq.ttf}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+% بسته زیر و متعاقباً دستورات ادامه آن، برای ریست کردن شماره پانویس‌ها در هر صفحه قرار داده شده است (به درخواست دکتر محمد عبداللهی ازگمی)--> رونوشت از پایان‌نامه کارشناسی ارشد
+
+%\usepackage[perpage]{footmisc}
+\usepackage{zref-perpage}
+\zmakeperpage{footnote}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\makeatletter
+\newcommand*{\Computebaselinestretch}[1]{%
+	\strip@pt\dimexpr\number\numexpr\number\dimexpr#1\relax*65536/\number\dimexpr\baselineskip\relax\relax sp\relax
+}
+\makeatother
+\linespread{\Computebaselinestretch{1.05cm}}
+
+\usepackage{csquotes}
+\usepackage{epigraph}
+\setlength\epigraphwidth{.7\textwidth}
+\renewcommand{\epigraphflush}{flushleft}
+\renewcommand{\sourceflush}{flushleft}
+\renewcommand{\textflush}{flushepinormal}
+
+%\usepackage{polyglossia}
+%\usepackage[algo2e,linesnumbered,ruled,vlined]{algorithm2e}
+\usepackage{textgreek}
+\usepackage{booktabs}  % professional-quality tables
+\usepackage{amsfonts}  % blackboard math symbols
+\usepackage{nicefrac}  % compact symbols for 1/2, etc.
+\usepackage{microtype}  % microtypography
+\usepackage{amsmath}
+\usepackage[algo2e, ruled, linesnumbered, resetcount]{algorithm2e}
+\def\HiLi{\leavevmode\rlap{\hbox to \hsize{\color{yellow!50}\leaders\hrule height .8\baselineskip depth .5ex\hfill}}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\faculty}{کارگروه مهندسی نرم‌افزار}
+\newcommand{\group}{گروه نرم‌افزار}
+\newcommand{\eyear}{سال تحصیلی 99-1398}
+\newcommand{\semester}{دوم (بهار 1403)}
+\newcommand{\course}{راه‌کارهای آزمون خودکار نرم‌افزار}
+\newcommand{\lecturer}{فاطمه بخشی}
+\newcommand{\teachingassist}{---}
+\newcommand{\term}{دوم (بهار 1403)}
+\newcommand{\examnum}{مستند فنی }
+\newcommand{\examtopic}{سنجش و تضمین کیفیت نرم‌افزار}
+\newcommand{\sentexamdate}{05/12/1398}
+\newcommand{\examdate}{20/12/1398}
+\newcommand{\timelimit}{100 دقیقه}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\BoldTitle{\huge{\course}}
+
+\def\Subtitle{\examnum \\ \textbf{\examtopic}}
+
+\title{\includegraphics[width=0.25\linewidth]{./logo.jpg}\\{\fontsize{16}{0}\nastaliq{\faculty}} \\ \BoldTitle \\ \large{\Subtitle} \\ }
+
+\author{
+	نگارنده:
+ \\  \lecturer
+ \\
+ویراستاران:
+  \\ \teachingassist
+	\\
+نگارش: 
+$0.1.0$
+	 \\  
+}
+
+%\title{}
+%\author{}
+%\date{اسفند 1398}
+%\date{}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{settings-glossary}
+\input{acronym}
+\input{glossary}
+\newtheorem{definition}{تعریف}[section]
+\begin{document}
+
+%\fancyhead[LE,RO]{\slshape \rightmark}
+%\fancyhead[LO,RE]{\slshape \leftmark}
+\begin{mybox}
+	\clearpage\maketitle
+	\thispagestyle{empty}
+	\maketitle
+\end{mybox}
+\pagestyle{fancy}
+\pagenumbering{harfi} % شماره صفحه حرفی %
+\newpage
+\tableofcontents
+\clearpage
+\pagenumbering{arabic}
+
+\section{مقدمه}
+\thispagestyle{plain}
+{\onehalfspacing 
+\epigraph{
+    «آزمون نرم‌افزار می‌تواند وجود خطاها را نشان دهد، اما هرگز نبود آنها را تضمین نمی‌کند!»
+}
+{$ \maltese $ {\large ادسـخر دایکـسترا}}
+}
+\noindent
+%\vspace{1cm}
+نرم‌افزار به مثابه هر هر محصول دیگری،  نیازمند آزمون و راستی‌آزمایی (درستی‌یابی) است. ماهیت غیرقابل لمس و پیچیدگی ذاتی نرم‌افزار سبب شده تا فرایند آزمون آن، در قیاس با دیگر محصولات مهندسی متفاوت، پیچیده، زمان‌بر و پرهزینه باشد؛ این دشواری‌ها اما از اهمیت موضوع آزمون نمی‌کاهد.
+%%
+از نقطه نظر محاسباتی، آزمون نرم‌افزار یک مسئله تصمیم‌ناپذیر است به همین سبب، خودکارسازی فرآیند آزمون امری اجتناب ناپذیر است.
+در این سند، ابتدا در بخش 
+\ref{sec:testing-and-testability}
+بیان می‌شود که چگونه آزمون‌پذیری و توجه به آن می‌تواند منجر به تسهیل فرانید آزمون و یافتن حداکثر تعداد خطا و دستیابی به کیفیت آزمون بالا شود. 
+سپس، رویکرد جدید
+ \textbf{توسعه آزمون‌پذیر رانه}
+ معرفی می‌شود.
+در  بخش 
+\ref{sec:automated-testing}
+ به بررسی مهم‌ترین فنون خودکارسازی فرایند آزمون پرداخته می‌شود. 
+
+\section{آزمون و آزمون‌پذیری}\label{sec:testing-and-testability}
+\subsection{تصمیم‌ناپذیری آزمون‌نرم‌افزار}
+متأسفانه آزمون تنها قادر است وجود خرابی را نشان دهد؛ اما، نبود آن را تضمین نمی‌کند. این مهم را نخستین بار دانشمند هلندی، ادسخر دایکسترا بیان کرد
+\cite{EWD:EWD249}. 
+به‌بیان صوری، مسئله یافتن تمامی خرابی‌های
+\gls{SUT}،
+ \gls{undecidable} 
+ است
+  \cite{ammann2016introduction}. 
+این موضوع، سبب می‌شود به‌دنبال راهکارهایی برای اندازه‌گیری آزمون و تعیین اثربخشی آن باشیم. معیارهای کفایت آزمون، برای این منظور و با هدف کمّی‌سازی و اندازه‌گیری مقدار آزمون انجام شده مطرح شده‌اند؛ هرچند متقابلاً در تولید داده آزمون هم کاربرد دارند. چون با مسئله‌ای 
+\gls{undecidable} 
+مواجه هستیم، بایستی معیاری وجود داشته باشد که مشخص کند چه زمانی می‌توانیم آزمون را خاتمه دهیم و در این زمان آزمون تا چه‌حد خوب انجام شده است. 
+
+\subsection{معیارهای کفایت آزمون}
+\lr{Ammann}
+و 
+\lr{Offutt} \cite{ammann2016introduction}
+معیارهای کفایت آزمون را تحت عنوان معیارهای پوشش و به‌صورت چهار معیار 
+\gls{InputSpacePartitioning}،  \gls{GraphCoverage}، \gls{LogicCoverage}
+و
+ \gls{SyntaxBasedCoverage}
+  مطرح کرده‌اند، که از این میان معیارهای پوشش گراف، استفاده گسترده‌تری دارند.
+\par
+پوشش گراف در سطح کد اجرایی که به آن پوشش کد هم گفته می‌شود، شامل پوشش گراف جریان کنترل 
+(\gls{CFG})
+ و گراف جریان داده
+ (\gls{DFG}) 
+برنامه می‌شود. پوشش منطق، مقدار‌دهی و تعیین ارزش عبارات منطقی ظاهر شده در کد منبع 
+\gls{SUT}
+است. افراز فضای ورودی، یعنی انتخاب از بین حالت‌های مختلف ترکیب ورودی‌ها. در نهایت، پوشش ساختار نحوی، استفاده از قوانین گرامر برای 
+\gls{validation}
+ داده‌های ورودی یا تولید داده‌های جدید آزمون را شامل می‌شود.
+
+\subsection{آزمون‌پذیری}
+\gls{testability}
+یا قابلیت آزمون‌نرم‌افزار، یکی از صفات کیفی نرم‌افزار و بیانگر درجه سهولت آزمون یک مصنوع نرم‌افزاری داده شده، یعنی آسان بودن یافتن خطا در آن است
+ \cite{ISO/IEC/IEEE/24765:2017}. 
+  چنانچه، مسئله آزمون‌ نرم‌افزار تصمیم‌پذیر بود، نیازی به مفهوم آزمون‌پذیری وجود نداشت؛ زیرا، در هر حال تمامی خطاهای نرم‌افزار توسط یک الگوریتم شناسایی می‌شد. بنابراین آزمون‌پذیری در سیستم‌های نرم‌افزاری، یک مبنای وجودی نظری دارد که آن را از سایر صفات کیفی مجزا می‌کند.
+در مهندسی سیستم و در حوزه کنترل کیفیت، تعداد قابل توجهی از صفات کیفی تعریف شده است. 
+در حقیقت، این صفات، میزان تحقق نیازمندی‌های غیرعملیاتی سیستم را مشخص می‌کنند. صفات کیفی، به دو رده داخلی و خارجی تقسیم می‌شوند 
+\cite{Freeman2010}؛
+\glspl{internal-quality-attribute}
+مشخص می‌کنند که سیستم، چگونه و تا چه‌میزان نیازهای غیر عملیاتی توسعه‌دهندگان خود را ملاقات می‌کند.
+% 
+\glspl{external-quality-attribute}
+مشخص می‌کنند که سیستم، تا چه میزان نیازهای غیر عملیاتی کاربران خود را ملاقات می‌کند. در این دیدگاه، صفاتی مانند 
+\gls{testability}،
+\gls{understandability}،
+\gls{reusability}،
+و
+\gls{changeability}
+ جزو صفات کیفیت داخلی هستند و به‌عنوان مثال، 
+\gls{reliability}
+ را می‌توان، یک صفت کیفیت خارجی به شمار آورد.
+\par
+در برخی مراجع، 
+\gls{internal-quality-attribute}
+به صفاتی اطلاق شده است که به‌صورت مستقیم توسط متریک‌های نرم‌افزار قابل اندازه‌گیری هستند؛ مانند 
+\gls{software-sizing}.
+در مقابل،
+\gls{external-quality-attribute}،
+به صفاتی اطلاق شده که به‌صورت مستقیم قابل اندازه‌گیری نیستند
+\cite{Elish2012}؛
+مانند 
+\gls{testability}.
+%
+در هر دو رده‌بندی، سنجش صفات کیفیت نرم‌افزار، کماکان مسئله‌ای باز محسوب می‌گردد. تمرکز ما در این رساله، بر روی 
+ \gls{testability}
+به‌عنوان یک 
+\gls{internal-quality-attribute}
+است و در سطح مصنوعات مختلف کد منبع، طراحی و نیازمندی‌های نرم‌افزار است.
+%
+به دلیل اهمیت موضوع، تعاریف متعددی از آزمون‌پذیری نرم‌افزار در استانداردهای جداگانه و نیز مشترکِ
+\lr{IEEE}،
+\lr{ISO} و 
+\lr{IET}
+ آمده است
+\cite{ISO/IEC/25010:2011, ISO/IEC/IEEE/24765:2017, ISO/IEC/IEEE/29148:2018, ISO/IEC/IEEE/12207:2017}. 
+رویکرد ما در این رساله، بر مبنای تعاریف ذکر شده در استاندارد‌های 
+\lr{\textit{ISO/IEC} 25010:2011} \cite{ISO/IEC/25010:2011}
+و
+\lr{\textit{ISO/IEC/IEEE} 24765:2017}
+\cite{ISO/IEC/IEEE/24765:2017}. 
+است که به ترتیب بر آزمون‌پذیری کد منبع و طراحی
+\cite{ISO/IEC/25010:2011}
+ و نیازمندی‌ها 
+\cite{ISO/IEC/IEEE/24765:2017}
+متمرکز بوده و بروزترین تعاریف در این حوزه هستند. این تعاریف به تفکیک مصنوعات ذکر شده در  ذیل آمده‌اند:
+%%
+%%
+\begin{definition}\label{def:source-code-and-design-testability}
+\textbf{
+ آزمون‌پذیری کد منبع و طراحی (مطابق
+ \lr{\textit{ISO/IEC} 25010:2011} \cite{ISO/IEC/25010:2011}):
+}
+«%
+{\textit{%
+درجه‌ای از 
+\gls{effectiveness}
+و 
+\gls{efficiency}
+که معیارهای آزمون می‌تواند بر اساس آن، برای یک سیستم، محصول یا مؤلفه، بنا گردد و آزمون‌ها می‌توانند برای تعیین اینکه این معیارها برآورده (ملاقات) شده‌اند یا نه، صورت پذیرند}}». 
+\end{definition}
+
+%% Requirements testability 
+\begin{definition}\label{def:requirements-testability}
+\textbf{
+ آزمون‌پذیری نیازمندی‌ها (مطابق
+\lr{\textit{ISO/IEC/IEEE} 24765:2017} \cite{ISO/IEC/IEEE/24765:2017}):
+}
+«%
+{\textit{%
+درجه‌ای که می‌توان یک آزمون عینی و شدنی را برای یک نیازمندی داده شده، برای تعیین اینکه آیا یک نیاز برآورده (ملاقات) شده است یا خیر، طراحی کرد%
+}}».
+\end{definition}
+
+در اینجا روش‌هایی برای سنجش و بهبود آزمون‌پذیری نرم‌افزار در سیستم‌های 
+\lr{Legacy}
+و یا سیستم‌هایی که با رویکرد 
+\lr{TFD}
+توسعه می‌یابند،
+پیش از هرگونه آزمون نرم‌افزار ارائه می‌گردد. 
+  سنجش و بهبود آزمون‌پذیری کد منبع نرم افزار در 
+\cite{Zakeri20232}
+بحث شده است.
+%%
+سنجش و بهبود آزمون‌پذیری طراحی نرم‌افزار در 
+\cite{Zakeri20244}
+بحث شده است.
+%%
+سنجش و بهبود آزمون‌پذیری نیازمندی‌های نرم‌افزار در 
+\cite{Zakeri20243}
+بحث شده است.
+
+
+\subsection{توسعه آزمون‌پذیر رانه}
+توسعه آزمون‌پذیر رانه راهکار جایگزینی
+توسعه آزمون‌رانه،
+ برای تولید خودکار نرم‌افزار آزمون شده و باکیفیت است. 
+%%
+توسعه آزمون‌پذیر رانه در 
+\cite{Parsa2025}
+بحث شده است.
+
+
+\section{
+فنون مؤثر آزمون خودکار پیاده‌سازی (کد)
+}\label{sec:automated-testing}
+
+\subsection{
+  خودکارسازی آزمون واحد و آزمون‌ یکپارچگی
+}
+توضیحات ابزارهایی مثل 
+\lr{EvoSuite}
+و 
+\lr{Pynguin}
+%—PYthoN General UnIt test geNerator
+
+
+\subsection{
+خودکارسازی آزمون ‌سیستم
+}
+در این بخش بر روی آزمون خودکار برنامه در سطح سیستم متمرکز می‌شویم. 
+یکی از کارآمدترین فنون برای آزمون خودکار در سطح سیستم، آزمون فازی است.
+آزمون فازی فرایند ساده تولید و سپس تزریق یک ورودی ناخواسته (بدشکل شده یا نامتعارف) به 
+\lr{SUT} 
+است. چنان‌چه برنامه بر اثر پردازش این ورودی ناخواسته دچار خرابی شود، حافظه برنامه مورد تحلیل قرار گرفته و خطای احتمالی موجود در کد آشکار می‌گردد. چون \lr{SUT} با تعداد ورودی‌های بسیار زیادی مورد آزمون قرار می‌گیرد، آزمون فازی را می‌توان نوعی آزمون فشار هم به‌شمار آورد. فرایند معمول آزمون فازی در ‏شکل
+\ref{fig:fuzz_testing_flowchart} 
+نشان داده شده است.
+
+\begin{figure}[!h]%[tbh!]%[ht]%[t!]
+\centering
+\includegraphics[width=0.65\linewidth, clip=true,  trim= 0 0 0 0]{ch2_fuzz_testing_flowchart_crop.pdf}
+\caption[روندنمای  فرایند آزمون فازی]{
+		روندنمای فرایند آزمون فازی در حالت ساده. پیمانه‌های مورد نیاز برای خودکارسازی فرایند با مستطیل خطچین مشخص شده‌اند. شرایط ادامه آزمون می‌تواند بر عهده فرد آزمون‌گر قرار داده شود یا توسط خود فازر تعیین گردد.
+}
+\label{fig:fuzz_testing_flowchart}
+\end{figure}
+
+\subsubsection{فازر}\label{sec:fuzzer}
+فازر ابزاری است که فرایند آزمون فازی را خودکار می‌کند. پیاده‌سازی هریک از پیمانه‌های شکل
+\ref{ch2_fuzz_testing_flowchart_crop.pdf}
+و تجمیع آنها در کنار یکدیگر یک فازر را ایجاد می‌کند. تمرکز اصلی در یک فازر، نحوه تولید داده آزمون است به‌گونه‌ای که می‌توان آن را وجه تمایز اصلی فازرهای مختلف دانست. فازری که برای آزمون برنامه‌های با ورودی فایل توسعه داده می‌شود، فازر قالب فایل هم نامیده می‌شود \cite{Sutton:2007:FBF:1324770}. روش‌های تولید داده در فازرها قابل تفکیک به دو دسته کلی روش‌های مبتنی بر جابه‌جایی یا جهش و روش‌های مبتنی بر تولید هستند \cite{Chen2018}.
+
+راه‌کارهای مطرح در فن آزمون فازی 
+\cite{Miller:1990:ESR:96267.96279,Miller1995,Forrester:2000:ESR:1267102.1267108,Miller:2006:ESR:1145735.1145743}،
+برای شناسایی خطاها و آسیب‌پذیری‌ها نیازمند تولید تعداد زیادی ورودی یا همان داده آزمون%
+\footnote{Test data}
+هستند. برای نرم‌افزارهایی با ساختار ورودی ساده، تولید داده آزمون نیز ساده است. به‌عنوان مثال می‌توان با روش تصادفی این کار را انجام داد؛ اما، در نرم‌افزارهایی با ساختار ورودی پیچیده، مانند فایل با قالب مشخص تولید داده آزمون متنوع که بتواند مسیرهای اجرایی بیشتری را پوشش دهد، کار آسانی نیست. 
+
+آزمون نرم‌افزارهایی که ورودیشان فایل است با مشکل اساسی تشخیص ساختار فایل مواجه هستند. بایستی بتوان ابزاری تولید نمود که با توجه به ساختار و قالب‌بندی فایل، قادر به تولید داده‌های آزمون باشد. داده‌های آزمونی که هم محتوا و هم قالب‌های مورد استفاده را چنان تغییر دهند که بتوان کلیه مسیرهای اصلی اجرایی برنامه را بررسی و پوشش داد. در این راستا دو برنامه گیج کننده یا در اصطلاح فازر به نام‌های 
+\lr{AFL} \cite{Zalewsky2013}
+و
+\lr{learn\&fuzz} \cite{Godefroid:2017:LML:3155562.3155573}
+ارایه شده‌اند که نسبت به فازرهای قبلی از هوشمندی بیشتری برای تولید داده‌های آزمون، برخوردار هستند.
+
+\lr{AFL} \cite{Zalewsky2013}
+با استفاده از  یک فرایند تکاملی، جمعیت تصادفی از دانه‌های اولیه%
+\footnote{Initial seeds}،
+را آن‌چنان اصلاح می‌کند که فایل‌های حاصل هنگامی که به برنامه مورد نظر به عنوان ورودی داده شوند در مجموع تعداد بیشتری از دستورالعمل‌های برنامه پوشش داده شود. چالش عمده این روش این است که چون بدون دانشِ ساختار فایل‌، برای مثال فایل 
+\lr{PDF}،
+ مبادرت به ایجاد فایل جدید از ترکیب قبلی‌ها می‌نماید؛ در عمل فایل حاصل ممکن است برچسب‌ها و اشیای مورد نیاز برای ساختار مورد نظر را نداشته باشد و  در نتیجه غیر قابل استفاده باشد.
+
+\subsection{
+خودکارسازی آزمون کارایی
+}
+
+\section{
+خودکارسازی آزمون سایر مصنوعات
+}
+
+\subsection{آزمون ‌نیازمندی‌ها}
+
+
+\subsection{آزمون  طراحی و معماری}
+مصنوعات نرم‌افزاری در مراحل مختلف توسط گراف‌ قابل توصیف هستند. در نتیجه می‌توان از فنون تحلیل شبکه در مهندسی نرم‌افزار استفاده کرد. هدف آشنایی با کاربرد دانش شبکه و تحلیل گراف، در مهندسی نرم‌افزار است. 
+
+
+\section{
+نتیجه‌گیری
+}
+
+
+
+
+
+\clearpage
+\thispagestyle{plain}
+\fancyhead[LO, RE]{\slshape }
+\onehalfspacing
+\bibliographystyle{ieeetr-fa}%{acm-fa}%{chicago-fa}%{plainnat-fa}%
+\bibliography{references-all.bib}
+
+\end{document}
